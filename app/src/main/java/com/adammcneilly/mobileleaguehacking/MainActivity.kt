@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
 
     init {
         val grizzHacks = Hackathon()
-        grizzHacks.eventName = "GrizzHacks"
+        grizzHacks.name = "GrizzHacks"
         grizzHacks.date = "March 14TH - 15TH"
         grizzHacks.location = "Rochester, MI"
-        grizzHacks.mainImageUrl = "https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/000/392/thumb/930adc5ed398-hackmtyMLH_300x300.png?1467906271"
-        grizzHacks.secondaryImageUrl = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
+        grizzHacks.imageURL = "https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/000/392/thumb/930adc5ed398-hackmtyMLH_300x300.png?1467906271"
+        grizzHacks.logoURL = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
         testHackathons.add(grizzHacks)
     }
 

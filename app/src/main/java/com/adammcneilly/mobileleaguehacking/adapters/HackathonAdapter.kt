@@ -63,14 +63,14 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
         fun bind(hackathon: Hackathon) {
             Glide.with(itemView.context)
-                    .load(hackathon.mainImageUrl)
+                    .load(hackathon.imageURL)
                     .error(R.drawable.noise)
                     .into(hackathonImage)
             Glide.with(itemView.context)
-                    .load(hackathon.secondaryImageUrl)
+                    .load(hackathon.logoURL)
                     .error(R.drawable.noise)
                     .into(hackathonLogo)
-            hackathonName?.text = hackathon.eventName
+            hackathonName?.text = hackathon.name
             hackathonDate?.text = hackathon.date
             hackathonLocation?.text = hackathon.location
         }

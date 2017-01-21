@@ -6,9 +6,9 @@ package com.adammcneilly.mobileleaguehacking.models
  * Created by adam.mcneilly on 1/21/17.
  */
 open class Hackathon {
-    var mainImageUrl = ""
-    var secondaryImageUrl = ""
-    var eventName = ""
+    var imageURL = ""
+    var logoURL = ""
+    var name = ""
     var date = ""
     var location = ""
 }
