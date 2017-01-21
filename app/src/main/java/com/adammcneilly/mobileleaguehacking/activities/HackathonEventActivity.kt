@@ -12,7 +12,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.models.Hackathon
+import com.bumptech.glide.Glide
 
 open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +36,20 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
 
         val navigationView = findViewById(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
+
+        // Get hackathon
+        val hackathon: Hackathon? = intent.getParcelableExtra<Hackathon>(HACKATHON)
+        supportActionBar?.title = hackathon?.name
+
+        // Setup header
+        val headerView = navigationView.getHeaderView(0)
+        val headerImage = headerView.findViewById(R.id.hackathon_logo) as ImageView
+        val headerTitle = headerView.findViewById(R.id.hackathon_name) as TextView
+        val headerDate = headerView.findViewById(R.id.hackathon_date) as TextView
+
+        Glide.with(this).load(hackathon?.logoURL).error(R.drawable.noise).into(headerImage)
+        headerTitle.text = hackathon?.name
+        headerDate.text = hackathon?.date
     }
 
     override fun onBackPressed() {
