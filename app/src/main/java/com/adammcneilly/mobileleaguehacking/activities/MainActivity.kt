@@ -48,7 +48,7 @@ open class MainActivity : AppCompatActivity() {
 
         // Make call
         val api = MLHManager()
-        api.getHackathons()
+        api.getHackathons("na")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(object: Subscriber<List<Hackathon>>() {

@@ -35,7 +35,7 @@ open class MLHManager {
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://tristanwiley.com/")
+                .baseUrl("https://mlh-spartahack.mybluemix.net/")
                 .client(client)
                 .build()
 
@@ -45,7 +45,7 @@ open class MLHManager {
     /**
      * Retrieve a list of all hackathons from the JSON file.
      */
-    fun getHackathons(): Observable<List<Hackathon>> {
-        return service.getHackathons()
+    fun getHackathons(region: String): Observable<List<Hackathon>> {
+        return service.getHackathons(region)
     }
 }
