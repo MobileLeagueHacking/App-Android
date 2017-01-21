@@ -10,6 +10,7 @@ open class Hackathon {
     var logoURL = ""
     var name = ""
     var date = ""
+    var hackURL = ""
     var location = ""
         // Since the API returns city,State without a space, let's add one ourselves.
         get() = field.replace(",", ", ")

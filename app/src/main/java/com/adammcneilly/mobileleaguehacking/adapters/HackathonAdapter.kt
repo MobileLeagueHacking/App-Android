@@ -13,6 +13,9 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import java.util.*
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+import android.net.Uri
 
 
 /**
@@ -46,14 +49,17 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         return HackathonViewHolder(view)
     }
 
-    open class HackathonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class HackathonViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
         private var hackathonImage: ImageView? = null
         private var hackathonLogo: ImageView? = null
         private var hackathonName: TextView? = null
         private var hackathonDate: TextView? = null
         private var hackathonLocation: TextView? = null
+        private var hackURL: String = ""
 
         init {
+            itemView.setOnClickListener(this)
+
             hackathonImage = view.findViewById(R.id.hackathon_image) as? ImageView
             hackathonLogo = view.findViewById(R.id.hackathon_logo) as? ImageView
             hackathonName = view.findViewById(R.id.hackathon_name) as? TextView
@@ -73,6 +79,15 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             hackathonName?.text = hackathon.name
             hackathonDate?.text = hackathon.date.toUpperCase()
             hackathonLocation?.text = hackathon.location
+            hackURL = hackathon.hackURL
+        }
+
+        override fun onClick(v: View?) {
+            if (hackURL.isNotEmpty()) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(hackURL)
+                v?.context?.startActivity(intent)
+            }
         }
     }
 }
