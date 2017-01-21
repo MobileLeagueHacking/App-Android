@@ -9,5 +9,8 @@
     tools:context="com.adammcneilly.mobileleaguehacking.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <include layout="@layout/list_item_hackathon"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/hackathon_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
