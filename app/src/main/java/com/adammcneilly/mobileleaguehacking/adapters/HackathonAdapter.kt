@@ -87,10 +87,24 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
         override fun onClick(v: View?) {
             if (hackathon != null) {
-                val context = itemView?.context
-                val intent = Intent(context, HackathonEventActivity::class.java)
-                intent.putExtra(HackathonEventActivity.HACKATHON, hackathon)
-                context?.startActivity(intent)
+                //TODO: Make call for hackathon name and get response
+
+                // Test package
+                launchPackage()
+            }
+        }
+
+        private fun launchPackage() {
+            //TODO: Don't hardcode
+            val packageName = "com.spartahack.spartahack17"
+
+            val intent = itemView.context.packageManager.getLaunchIntentForPackage(packageName)
+            if (intent != null) {
+                itemView.context.startActivity(intent)
+            } else {
+                val market = Intent(android.content.Intent.ACTION_VIEW)
+                market.data = Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)
+                itemView.context.startActivity(market)
             }
         }
     }
