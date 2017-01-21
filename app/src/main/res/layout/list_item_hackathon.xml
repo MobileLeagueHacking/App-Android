@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="20dp" />
+            tools:layout_editor_absoluteX="17dp" />
 
         <ImageView
             android:id="@+id/hackathon_logo"
@@ -31,7 +31,7 @@
             android:layout_height="100dp"
             android:contentDescription="@string/hackathon_logo"
             android:src="@drawable/noise"
-            app:layout_constraintBottom_toBottomOf="@+id/hackathon_image"
+            app:layout_constraintBottom_toTopOf="@+id/hackathon_name"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="@+id/hackathon_image"
@@ -41,6 +41,7 @@
             android:id="@+id/hackathon_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:padding="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -48,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_image"
-            tools:layout_editor_absoluteX="110dp" />
+            tools:layout_editor_absoluteX="184dp" />
 
         <TextView
             android:id="@+id/hackathon_date"
@@ -60,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_name"
-            tools:layout_editor_absoluteX="88dp" />
+            tools:layout_editor_absoluteX="192dp" />
 
         <TextView
             android:id="@+id/hackathon_location"
@@ -73,6 +74,15 @@
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_date"
-            tools:layout_editor_absoluteX="110dp" />
+            tools:layout_editor_absoluteX="192dp" />
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="20dp" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
