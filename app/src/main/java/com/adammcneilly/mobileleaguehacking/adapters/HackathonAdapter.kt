@@ -1,5 +1,7 @@
 package com.adammcneilly.mobileleaguehacking.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +11,7 @@ import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import java.util.*
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import android.support.v4.content.ContextCompat.startActivity
-import android.content.Intent
-import android.net.Uri
 
 
 /**
@@ -24,12 +20,18 @@ import android.net.Uri
  * Created by adam.mcneilly on 1/21/17.
  */
 open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonViewHolder>() {
+    /**
+     * The data source of Hackathons to be displayed.
+     */
     var items: List<Hackathon> = ArrayList()
 
     constructor(items: List<Hackathon>): this() {
         this.items = items
     }
 
+    /**
+     * Replaces the current data set with a new one.
+     */
     fun swapItems(items: List<Hackathon>) {
         this.items = items
         notifyDataSetChanged()

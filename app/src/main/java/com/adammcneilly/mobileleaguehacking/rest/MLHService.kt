@@ -10,6 +10,9 @@ import rx.Observable
  * Created by adam.mcneilly on 1/21/17.
  */
 interface MLHService {
+    /**
+     * Retrieve a list of all hackathons from the JSON file.
+     */
     @GET("test.json")
     fun getHackathons(): Observable<List<Hackathon>>
 }

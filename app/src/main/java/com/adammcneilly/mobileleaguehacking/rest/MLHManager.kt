@@ -15,7 +15,14 @@ import rx.Observable
  * Created by adam.mcneilly on 1/21/17.
  */
 open class MLHManager {
+    /**
+     * Interceptor that will log Retrofit calls to the console for us.
+     */
     private val loggingInterceptor = HttpLoggingInterceptor()
+
+    /**
+     * The service interface used to make calls to the API.
+     */
     val service: MLHService
 
     init {
@@ -35,6 +42,9 @@ open class MLHManager {
         service = retrofit.create(MLHService::class.java)
     }
 
+    /**
+     * Retrieve a list of all hackathons from the JSON file.
+     */
     fun getHackathons(): Observable<List<Hackathon>> {
         return service.getHackathons()
     }

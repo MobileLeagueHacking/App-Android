@@ -12,23 +12,12 @@ import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    /**
+     * An adapter used to display the list of Hackathons.
+     */
     val adapter = HackathonAdapter()
-    val testHackathons: MutableList<Hackathon> = ArrayList()
-
-    init {
-        val grizzHacks = Hackathon()
-        grizzHacks.name = "GrizzHacks"
-        grizzHacks.date = "March 14TH - 15TH"
-        grizzHacks.location = "Rochester, MI"
-        grizzHacks.imageURL = "https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/000/392/thumb/930adc5ed398-hackmtyMLH_300x300.png?1467906271"
-        grizzHacks.logoURL = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
-        testHackathons.add(grizzHacks)
-
-        adapter.swapItems(testHackathons)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onCompleted() {
-                        //TODO:
+                        //TODO: Add a progress bar and remove it here.
                     }
                 })
     }
