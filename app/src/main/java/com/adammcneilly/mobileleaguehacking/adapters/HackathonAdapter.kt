@@ -12,6 +12,7 @@ import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.activities.HackathonEventActivity
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.models.HackathonAppResponse
+import com.adammcneilly.mobileleaguehacking.models.HackathonWebResponse
 import com.bumptech.glide.Glide
 import java.util.*
 
@@ -89,10 +90,6 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         override fun onClick(v: View?) {
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
-
-                // Test website
-                //TODO: Don't hardcode
-                launchWebsite(hackathon?.hackURL.orEmpty())
             }
         }
 
@@ -107,9 +104,9 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             }
         }
 
-        private fun launchWebsite(url: String) {
+        private fun launchWebsite(response: HackathonWebResponse) {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
+            intent.data = Uri.parse(response.url)
             itemView.context.startActivity(intent)
         }
     }
