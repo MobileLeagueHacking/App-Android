@@ -1,5 +1,7 @@
 package com.adammcneilly.mobileleaguehacking.models
 
+import android.os.Parcel
+import android.os.Parcelable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -8,7 +10,7 @@ import java.util.*
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-open class Hackathon {
+open class Hackathon() : Parcelable {
     /**
      * Formatter to convert a string into a date.
      */
@@ -43,7 +45,7 @@ open class Hackathon {
      * The city and state of the event, presented as "City,State"
      */
     var location = ""
-        // Since the API returns city,State without a space, let's add one ourselves.
+            // Since the API returns city,State without a space, let's add one ourselves.
         get() = field.replace(",", ", ")
 
     /**
@@ -55,6 +57,17 @@ open class Hackathon {
      * The laste date of the event.
      */
     var endDate = ""
+
+    constructor(source: Parcel) : this() {
+        this.imageURL = source.readString()
+        this.logoURL = source.readString()
+        this.name = source.readString()
+        this.date = source.readString()
+        this.hackURL = source.readString()
+        this.location = source.readString()
+        this.startDate = source.readString()
+        this.endDate = source.readString()
+    }
 
     /**
      * Returns a Date object for the startDate string.
@@ -68,5 +81,33 @@ open class Hackathon {
      */
     fun getEndDate(): Date {
         return dateFormatter.parse(endDate)
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(imageURL)
+        dest?.writeString(logoURL)
+        dest?.writeString(name)
+        dest?.writeString(date)
+        dest?.writeString(hackURL)
+        dest?.writeString(location)
+        dest?.writeString(startDate)
+        dest?.writeString(endDate)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Hackathon> = object : Parcelable.Creator<Hackathon> {
+            override fun createFromParcel(source: Parcel): Hackathon {
+                return Hackathon(source)
+            }
+
+            override fun newArray(size: Int): Array<out Hackathon?> {
+                return arrayOfNulls(size)
+            }
+        }
     }
 }

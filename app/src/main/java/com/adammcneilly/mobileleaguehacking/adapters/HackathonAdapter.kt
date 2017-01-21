@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.activities.HackathonEventActivity
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.bumptech.glide.Glide
 import java.util.*
@@ -57,7 +58,7 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         private var hackathonName: TextView? = null
         private var hackathonDate: TextView? = null
         private var hackathonLocation: TextView? = null
-        private var hackURL: String = ""
+        private var hackathon: Hackathon? = null
 
         init {
             itemView.setOnClickListener(this)
@@ -70,6 +71,7 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         }
 
         fun bind(hackathon: Hackathon) {
+            this.hackathon = hackathon
             Glide.with(itemView.context)
                     .load(hackathon.imageURL)
                     .error(R.drawable.noise)
@@ -81,14 +83,14 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             hackathonName?.text = hackathon.name
             hackathonDate?.text = hackathon.date.toUpperCase()
             hackathonLocation?.text = hackathon.location
-            hackURL = hackathon.hackURL
         }
 
         override fun onClick(v: View?) {
-            if (hackURL.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(hackURL)
-                v?.context?.startActivity(intent)
+            if (hackathon != null) {
+                val context = itemView?.context
+                val intent = Intent(context, HackathonEventActivity::class.java)
+                intent.putExtra(HackathonEventActivity.HACKATHON, hackathon)
+                context?.startActivity(intent)
             }
         }
     }

@@ -4,4 +4,8 @@
     <string name="hackathon">Hackathon</string>
     <string name="hackathon_image">Hackathon Image</string>
     <string name="hackathon_logo">Hackathon Logo</string>
+    <string name="title_activity_hackathon_event">Hackathon Event</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

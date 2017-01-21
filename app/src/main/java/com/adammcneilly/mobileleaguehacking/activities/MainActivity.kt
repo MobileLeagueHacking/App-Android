@@ -15,7 +15,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
     /**
      * An adapter used to display the list of Hackathons.
      */
