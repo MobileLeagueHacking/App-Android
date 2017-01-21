@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.activities.HackathonEventActivity
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
+import com.adammcneilly.mobileleaguehacking.models.HackathonAppResponse
 import com.bumptech.glide.Glide
 import java.util.*
 
@@ -89,23 +90,27 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
 
-                // Test package
-                launchPackage()
+                // Test website
+                //TODO: Don't hardcode
+                launchWebsite(hackathon?.hackURL.orEmpty())
             }
         }
 
-        private fun launchPackage() {
-            //TODO: Don't hardcode
-            val packageName = "com.spartahack.spartahack17"
-
-            val intent = itemView.context.packageManager.getLaunchIntentForPackage(packageName)
+        private fun launchApp(response: HackathonAppResponse) {
+            val intent = itemView.context.packageManager.getLaunchIntentForPackage(response.packageId)
             if (intent != null) {
                 itemView.context.startActivity(intent)
             } else {
-                val market = Intent(android.content.Intent.ACTION_VIEW)
-                market.data = Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)
+                val market = Intent(Intent.ACTION_VIEW)
+                market.data = Uri.parse("https://play.google.com/store/apps/details?id=" + response.packageId)
                 itemView.context.startActivity(market)
             }
+        }
+
+        private fun launchWebsite(url: String) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            itemView.context.startActivity(intent)
         }
     }
 }
