@@ -48,12 +48,14 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
     open class HackathonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var hackathonImage: ImageView? = null
+        private var hackathonLogo: ImageView? = null
         private var hackathonName: TextView? = null
         private var hackathonDate: TextView? = null
         private var hackathonLocation: TextView? = null
 
         init {
             hackathonImage = view.findViewById(R.id.hackathon_image) as? ImageView
+            hackathonLogo = view.findViewById(R.id.hackathon_logo) as? ImageView
             hackathonName = view.findViewById(R.id.hackathon_name) as? TextView
             hackathonDate = view.findViewById(R.id.hackathon_date) as? TextView
             hackathonLocation = view.findViewById(R.id.hackathon_location) as? TextView
@@ -64,6 +66,10 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
                     .load(hackathon.mainImageUrl)
                     .error(R.drawable.noise)
                     .into(hackathonImage)
+            Glide.with(itemView.context)
+                    .load(hackathon.secondaryImageUrl)
+                    .error(R.drawable.noise)
+                    .into(hackathonLogo)
             hackathonName?.text = hackathon.eventName
             hackathonDate?.text = hackathon.date
             hackathonLocation?.text = hackathon.location

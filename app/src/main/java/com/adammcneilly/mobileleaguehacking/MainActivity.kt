@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         grizzHacks.eventName = "GrizzHacks"
         grizzHacks.date = "March 14TH - 15TH"
         grizzHacks.location = "Rochester, MI"
-        grizzHacks.mainImageUrl = "http://i.imgur.com/1DONLl1.png"
+        grizzHacks.mainImageUrl = "https://s3.amazonaws.com/assets.mlh.io/events/splashes/000/000/392/thumb/930adc5ed398-hackmtyMLH_300x300.png?1467906271"
+        grizzHacks.secondaryImageUrl = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
         testHackathons.add(grizzHacks)
     }
 

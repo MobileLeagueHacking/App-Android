@@ -24,7 +24,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="40dp" />
+            tools:layout_editor_absoluteX="20dp" />
+
+        <ImageView
+            android:id="@+id/hackathon_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/hackathon_logo"
+            android:src="@drawable/noise"
+            app:layout_constraintBottom_toBottomOf="@+id/hackathon_image"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="@+id/hackathon_image"
+            app:layout_constraintRight_toRightOf="@+id/hackathon_image" />
 
         <TextView
             android:id="@+id/hackathon_name"
@@ -32,26 +44,24 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="SpartaHack"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_image"
-            tools:layout_editor_absoluteX="106dp" />
+            tools:layout_editor_absoluteX="110dp" />
 
         <TextView
             android:id="@+id/hackathon_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="February 20TH - 23RD"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_name"
-            tools:layout_editor_absoluteX="106dp" />
+            tools:layout_editor_absoluteX="88dp" />
 
         <TextView
             android:id="@+id/hackathon_location"
@@ -59,12 +69,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="8dp"
-            android:text="East Lansing, MI"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/hackathon_date"
-            tools:layout_editor_absoluteX="106dp" />
+            tools:layout_editor_absoluteX="110dp" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
