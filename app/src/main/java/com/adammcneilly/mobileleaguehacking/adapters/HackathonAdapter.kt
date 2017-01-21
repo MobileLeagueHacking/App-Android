@@ -71,7 +71,7 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
                     .error(R.drawable.noise)
                     .into(hackathonLogo)
             hackathonName?.text = hackathon.name
-            hackathonDate?.text = hackathon.date
+            hackathonDate?.text = hackathon.date.toUpperCase()
             hackathonLocation?.text = hackathon.location
         }
     }

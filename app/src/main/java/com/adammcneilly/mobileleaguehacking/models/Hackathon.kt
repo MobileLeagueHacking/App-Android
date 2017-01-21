@@ -11,4 +11,6 @@ open class Hackathon {
     var name = ""
     var date = ""
     var location = ""
+        // Since the API returns city,State without a space, let's add one ourselves.
+        get() = field.replace(",", ", ")
 }
