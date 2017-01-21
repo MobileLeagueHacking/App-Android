@@ -1,9 +1,11 @@
-package com.adammcneilly.mobileleaguehacking
+package com.adammcneilly.mobileleaguehacking.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.View
+import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.adapters.HackathonAdapter
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.rest.MLHManager
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         // Make call
         val api = MLHManager()
+        progress_bar.visibility = View.VISIBLE
         api.getHackathons()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onCompleted() {
-                        //TODO: Add a progress bar and remove it here.
+                        progress_bar.visibility = View.GONE
                     }
                 })
     }
