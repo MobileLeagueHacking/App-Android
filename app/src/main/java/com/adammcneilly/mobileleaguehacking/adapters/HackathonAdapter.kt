@@ -8,10 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.activities.HackathonEventActivity
 import com.adammcneilly.mobileleaguehacking.models.*
+import com.adammcneilly.mobileleaguehacking.rest.MLHManager
 import com.bumptech.glide.Glide
+import rx.Subscriber
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import java.util.*
 
 
@@ -96,18 +101,40 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         override fun onClick(v: View?) {
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
+                val api = MLHManager()
+                api.getHackathonInfo(hackathon?.id.orEmpty())
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(object: Subscriber<HackathonTypeResponse>() {
+                            override fun onNext(t: HackathonTypeResponse?) {
+                                //TODO:
+                                if (t != null) {
+                                    when (t.type) {
+                                        HackathonTypeResponse.APP -> {
+                                            launchApp(t.packageName)
+                                        }
+                                    }
+                                }
+                            }
 
-                launchTemplate(testResponse)
+                            override fun onCompleted() {
+                                //TODO:
+                            }
+
+                            override fun onError(e: Throwable?) {
+                                Toast.makeText(itemView.context, e?.message, Toast.LENGTH_SHORT).show()
+                            }
+                        })
             }
         }
 
-        private fun launchApp(response: HackathonAppResponse) {
-            val intent = itemView.context.packageManager.getLaunchIntentForPackage(response.packageId)
+        private fun launchApp(packageName: String) {
+            val intent = itemView.context.packageManager.getLaunchIntentForPackage(packageName)
             if (intent != null) {
                 itemView.context.startActivity(intent)
             } else {
                 val market = Intent(Intent.ACTION_VIEW)
-                market.data = Uri.parse("https://play.google.com/store/apps/details?id=" + response.packageId)
+                market.data = Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)
                 itemView.context.startActivity(market)
             }
         }

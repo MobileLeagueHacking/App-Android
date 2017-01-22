@@ -2,6 +2,8 @@ package com.adammcneilly.mobileleaguehacking.rest
 
 import com.adammcneilly.mobileleaguehacking.BuildConfig
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
+import com.adammcneilly.mobileleaguehacking.models.HackathonTypeResponse
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,6 +27,10 @@ open class MLHManager {
      */
     val service: MLHService
 
+    val gson = GsonBuilder()
+            .registerTypeAdapter(HackathonTypeResponse::class.java, HackathonTypeResponse.HackathonTypeResponseDeserializer())
+            .create()
+
     init {
         if (BuildConfig.DEBUG) loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -34,7 +40,7 @@ open class MLHManager {
 
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl("http://fa997472.ngrok.io/")
                 .client(client)
                 .build()
@@ -47,5 +53,9 @@ open class MLHManager {
      */
     fun getHackathons(region: String): Observable<List<Hackathon>> {
         return service.getHackathons(region)
+    }
+
+    fun getHackathonInfo(id: String): Observable<HackathonTypeResponse> {
+        return service.getHackathonInfo(id)
     }
 }
