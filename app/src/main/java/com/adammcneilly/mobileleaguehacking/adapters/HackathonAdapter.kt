@@ -75,6 +75,13 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             testResponse.hackathon.name = "HackMTY"
             testResponse.hackathon.logoURL = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
             testResponse.hackathon.date = "August 27th - 28th"
+
+            val helloWorld = Sponsor()
+            helloWorld.name = "HelloWorld"
+
+            val ics = Sponsor()
+            ics.name = "Intrepid Control Systems"
+            testResponse.sponsors = listOf(helloWorld, ics)
         }
 
         fun bind(hackathon: Hackathon) {

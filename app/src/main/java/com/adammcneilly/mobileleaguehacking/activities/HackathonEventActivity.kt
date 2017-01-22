@@ -2,6 +2,7 @@ package com.adammcneilly.mobileleaguehacking.activities
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,6 +12,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.fragments.SponsorFragment
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.models.HackathonTemplateResponse
 import com.bumptech.glide.Glide
@@ -18,6 +20,7 @@ import java.util.*
 
 open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    var response: HackathonTemplateResponse = HackathonTemplateResponse()
     val menuItems: HashMap<String, Int> = HashMap()
 
     init {
@@ -46,8 +49,8 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         navigationView.setNavigationItemSelectedListener(this)
 
         // Get hackathon
-        val response: HackathonTemplateResponse? = intent.getParcelableExtra(TEMPLATE)
-        val hackathon: Hackathon? = response?.hackathon
+        response = intent.getParcelableExtra(TEMPLATE)
+        val hackathon: Hackathon? = response.hackathon
         supportActionBar?.title = hackathon?.name
 
         // Setup header
@@ -75,6 +78,16 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        var fragment: Fragment? = null
+
+        when (item.title) {
+                "Sponsors" -> fragment = SponsorFragment.newInstance(response.sponsors)
+        }
+
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.content_hackathon_event, fragment).commit()
+        }
+
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
