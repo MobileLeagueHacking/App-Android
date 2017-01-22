@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.adapters.HackathonAdapter
+import com.adammcneilly.mobileleaguehacking.enums.Region
 import com.adammcneilly.mobileleaguehacking.fragments.FilterDialog
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.rest.MLHManager
@@ -19,7 +20,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import java.util.*
 
-open class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity(), FilterDialog.OnFilteredListener {
     /**
      * An adapter used to display the list of Hackathons.
      */
@@ -41,15 +42,16 @@ open class MainActivity : AppCompatActivity() {
         hackathon_list.adapter = adapter
         hackathon_list.layoutManager = layoutManager
 
-        refresh_layout.setOnRefreshListener { getHackathons() }
+        refresh_layout.isEnabled = false
+        //refresh_layout.setOnRefreshListener { getHackathons() }
 
-        getHackathons()
+        getHackathons(Region.NORTH_AMERICA)
     }
 
     /**
-     * Retrieves and displays all hackathons.
+     * Retrieves and displays all hackathons for a region
      */
-    private fun getHackathons() {
+    private fun getHackathons(region: Region) {
         // If this was called via the refresh layout, don't bother to show progress bar too
         if (!refresh_layout.isRefreshing) {
             progress_bar.visibility = View.VISIBLE
@@ -57,7 +59,7 @@ open class MainActivity : AppCompatActivity() {
 
         // Make call
         val api = MLHManager()
-        api.getHackathons("na")
+        api.getHackathons(region.code)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(object: Subscriber<List<Hackathon>>() {
@@ -95,5 +97,9 @@ open class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun filtered(result: FilterDialog.FilterDialogResult) {
+        getHackathons(result.region)
     }
 }
