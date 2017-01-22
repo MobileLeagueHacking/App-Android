@@ -63,5 +63,30 @@ open class Event(): BaseModel() {
         private val timeFormat = SimpleDateFormat("yyyy-mm-dd HH:mm", Locale.getDefault())
         private val timeDisplay = SimpleDateFormat("HH:mm", Locale.getDefault())
         private val dayDisplay = SimpleDateFormat("E, MMM dd", Locale.getDefault())
+
+        //TODO: Remove
+        fun getSampleEvents(): List<Event> {
+            val openingCeremony = Event()
+            openingCeremony.name = "Opening Ceremony"
+            openingCeremony.startTime = "2017-01-20 21:00"
+            openingCeremony.location = "B115"
+
+            val noLight = Event()
+            noLight.name = "!Light"
+            noLight.startTime = "2017-01-21 22:30"
+            noLight.location = "B106"
+
+            val expo = Event()
+            expo.name = "Expo"
+            expo.startTime = "2017-01-22 13:00"
+            expo.location = "B Hallway"
+
+            val closingCeremony = Event()
+            closingCeremony.name = "Closing Ceremony"
+            closingCeremony.startTime = "2017-01-22 15:00"
+            closingCeremony.location = "B115"
+
+            return listOf(openingCeremony, noLight, expo, closingCeremony)
+        }
     }
 }

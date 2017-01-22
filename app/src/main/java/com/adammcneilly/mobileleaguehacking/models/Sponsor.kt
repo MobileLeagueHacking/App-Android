@@ -39,5 +39,22 @@ open class Sponsor(): BaseModel() {
 
     companion object {
         @JvmField val CREATOR = creator(::Sponsor)
+
+        //TODO: Remove
+        fun getSampleSponsors(): List<Sponsor> {
+            val ibm = Sponsor()
+            ibm.name = "IBM"
+            ibm.url = "http://ibm.com"
+
+            val quickenLoans = Sponsor()
+            quickenLoans.name = "Quicken Loans"
+            quickenLoans.url = "http://quickenloans.com"
+
+            val delphi = Sponsor()
+            delphi.name = "Delphi"
+            delphi.url = "http://delphi.com"
+
+            return listOf(ibm, quickenLoans, delphi)
+        }
     }
 }

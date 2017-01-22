@@ -1,7 +1,6 @@
 package com.adammcneilly.mobileleaguehacking.models
 
 import android.os.Parcel
-import android.os.Parcelable
 import com.adammcneilly.mobileleaguehacking.utils.creator
 
 /**
@@ -39,5 +38,25 @@ open class Prize(): BaseModel() {
 
     companion object {
         @JvmField val CREATOR = creator(::Prize)
+
+        //TODO: Remove
+        fun getSamplePrizes(): List<Prize> {
+            val firstPlace = Prize()
+            firstPlace.value = "$1000 to split + $3000 SendGrid credits + 6 months of Loader.io + 1 year of Wolfram|Alpha Pro"
+            firstPlace.description = "First Place"
+            firstPlace.sponsor = "SpartaHack"
+
+            val secondPlace = Prize()
+            secondPlace.value = "$750 to split +$1560 in SendGrid credits + 1 year of Wolfram|Alpha Pro"
+            secondPlace.description = "Second Place"
+            secondPlace.sponsor = "SpartaHack"
+
+            val thirdPlace = Prize()
+            thirdPlace.value = "$500 to split + 1 year of Wolfram|Alpha Pro"
+            thirdPlace.description = "Third Place"
+            thirdPlace.sponsor = "SpartaHack"
+
+            return listOf(firstPlace, secondPlace, thirdPlace)
+        }
     }
 }

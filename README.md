@@ -7,3 +7,17 @@ This application is meant to be a centralized mobile application for hackathons.
 The main activity simply shows a list of available hackathons the user can attend, with options to filter. Below is a screenshot.
 
 <img src="screenshots/main.png" width="400" height="640" />
+
+##Event Template
+
+For applications that choose to use our mobile app template, below are a few screenshots of what you can expect to see, depending on the information entered by the organizers.
+
+<img src="screenshots/drawer.png" width="400" height="640" />
+
+<img src="screenshots/schedule.png" width="400" height="640" />
+
+<img src="screenshots/sponsors.png" width="400" height="640" />
+
+<img src="screenshots/prizes.png" width="400" height="640" />
+
+<img src="screenshots/map.png" width="400" height="640" />

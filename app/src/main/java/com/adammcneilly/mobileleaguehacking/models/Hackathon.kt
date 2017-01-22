@@ -108,5 +108,15 @@ open class Hackathon() : Parcelable {
 
     companion object {
         @JvmField val CREATOR = creator(::Hackathon)
+
+        //TODO: Remove
+        fun getSampleHackathon(): Hackathon {
+            val hackathon = Hackathon()
+            hackathon.name = "SpartaHack"
+            hackathon.logoURL = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/529/thumb/sparta_logo.png?1479237472"
+            hackathon.date = "February 20th - 22th"
+
+            return hackathon
+        }
     }
 }
