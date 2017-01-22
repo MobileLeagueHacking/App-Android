@@ -88,30 +88,6 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         override fun onClick(v: View?) {
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
-
-
-                //TODO: Remove template
-                val response = HackathonTemplateResponse()
-                response.hackathon.name = "GrizzHacks"
-                response.hackathon.hackURL = "http://grizzhacks.com"
-
-                val helloWorld = Sponsor()
-                helloWorld.name = "HelloWorld"
-                helloWorld.url = "http://helloworldinc.com"
-
-                val prize = Prize()
-                prize.description = "Best use of AWS"
-                prize.value = "$100"
-
-                val event = Event()
-                event.name = "Cup Stacking"
-                event.startTime = "2017-01-21 14:00:00"
-
-                response.sponsors = arrayOf(helloWorld).asList()
-                response.prizes = arrayOf(prize).asList()
-                response.schedule = arrayOf(event).asList()
-
-                launchTemplate(response)
             }
         }
 
