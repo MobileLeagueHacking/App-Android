@@ -23,12 +23,14 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
     var response: HackathonTemplateResponse = HackathonTemplateResponse()
     val menuItems: HashMap<String, Int> = HashMap()
 
+    private var navigationView: NavigationView? = null
+
     init {
         //Default menu items to display.
         //TODO: Continue to hardcode or pull these?
-        menuItems.put("Schedule", R.drawable.ic_calendar_black_24dp)
-        menuItems.put("Prizes", R.drawable.ic_prizes_black_24dp)
-        menuItems.put("Sponsors", R.drawable.ic_sponsor_black_24dp)
+        menuItems.put(SCHEDULE, R.drawable.ic_calendar_black_24dp)
+        menuItems.put(PRIZES, R.drawable.ic_prizes_black_24dp)
+        menuItems.put(SPONSORS, R.drawable.ic_sponsor_black_24dp)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +47,8 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
+        navigationView = findViewById(R.id.nav_view) as? NavigationView
+        navigationView?.setNavigationItemSelectedListener(this)
 
         // Get hackathon
         response = intent.getParcelableExtra(TEMPLATE)
@@ -54,18 +56,20 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         supportActionBar?.title = hackathon?.name
 
         // Setup header
-        val headerView = navigationView.getHeaderView(0)
-        val headerImage = headerView.findViewById(R.id.hackathon_logo) as ImageView
-        val headerTitle = headerView.findViewById(R.id.hackathon_name) as TextView
-        val headerDate = headerView.findViewById(R.id.hackathon_date) as TextView
+        val headerView = navigationView?.getHeaderView(0)
+        val headerImage = headerView?.findViewById(R.id.hackathon_logo) as ImageView
+        val headerTitle = headerView?.findViewById(R.id.hackathon_name) as TextView
+        val headerDate = headerView?.findViewById(R.id.hackathon_date) as TextView
 
         Glide.with(this).load(hackathon?.logoURL).error(R.drawable.noise).into(headerImage)
         headerTitle.text = hackathon?.name
         headerDate.text = hackathon?.date
 
         // Setup menu
-        val menu = navigationView.menu
-        menuItems.forEach { menu.add(it.key).setIcon(it.value) }
+        val menu = navigationView?.menu
+        menuItems.forEach { menu?.add(it.key)?.setIcon(it.value) }
+
+        menu?.getItem(0)?.isChecked = true
     }
 
     override fun onBackPressed() {
@@ -81,19 +85,30 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         var fragment: Fragment? = null
 
         when (item.title) {
-                "Sponsors" -> fragment = SponsorFragment.newInstance(response.sponsors)
+                SPONSORS -> fragment = SponsorFragment.newInstance(response.sponsors)
         }
 
         if (fragment != null) {
             supportFragmentManager.beginTransaction().replace(R.id.content_hackathon_event, fragment).commit()
         }
 
+        setItemChecked(item)
+
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
 
+    private fun setItemChecked(item: MenuItem) {
+        val menu = navigationView?.menu
+        val size = menu?.size() ?: 0
+        (0..size - 1).map { menu?.getItem(it) }.forEach { it?.isChecked = (it == item) }
+    }
+
     companion object {
         val TEMPLATE = "Template"
+        val SCHEDULE = "Schedule"
+        val SPONSORS = "Sponsors"
+        val PRIZES = "Prizes"
     }
 }
