@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.adapters.HackathonAdapter
+import com.adammcneilly.mobileleaguehacking.fragments.FilterDialog
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.rest.MLHManager
 import kotlinx.android.synthetic.main.content_main.*
@@ -86,6 +87,13 @@ open class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_filter -> {
+                FilterDialog().show(supportFragmentManager, "Filter")
+                return true
+            }
+        }
+
         return super.onOptionsItemSelected(item)
     }
 }

@@ -10,4 +10,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="map">Map</string>
     <string name="filter">Filter</string>
+    <string name="north_america">North America</string>
+    <string name="europe">Europe</string>
+    <string name="region">Region</string>
 </resources>
