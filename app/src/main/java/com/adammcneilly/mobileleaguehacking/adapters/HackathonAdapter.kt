@@ -10,9 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.activities.HackathonEventActivity
-import com.adammcneilly.mobileleaguehacking.models.Hackathon
-import com.adammcneilly.mobileleaguehacking.models.HackathonAppResponse
-import com.adammcneilly.mobileleaguehacking.models.HackathonWebResponse
+import com.adammcneilly.mobileleaguehacking.models.*
 import com.bumptech.glide.Glide
 import java.util.*
 
@@ -90,6 +88,30 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         override fun onClick(v: View?) {
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
+
+
+                //TODO: Remove template
+                val response = HackathonTemplateResponse()
+                response.hackathon.name = "GrizzHacks"
+                response.hackathon.hackURL = "http://grizzhacks.com"
+
+                val helloWorld = Sponsor()
+                helloWorld.name = "HelloWorld"
+                helloWorld.url = "http://helloworldinc.com"
+
+                val prize = Prize()
+                prize.description = "Best use of AWS"
+                prize.value = "$100"
+
+                val event = Event()
+                event.name = "Cup Stacking"
+                event.startTime = "2017-01-21 14:00:00"
+
+                response.sponsors = arrayOf(helloWorld).asList()
+                response.prizes = arrayOf(prize).asList()
+                response.schedule = arrayOf(event).asList()
+
+                launchTemplate(response)
             }
         }
 
@@ -107,6 +129,12 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         private fun launchWebsite(response: HackathonWebResponse) {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(response.url)
+            itemView.context.startActivity(intent)
+        }
+
+        private fun launchTemplate(response: HackathonTemplateResponse) {
+            val intent = Intent(itemView.context, HackathonEventActivity::class.java)
+            intent.putExtra(HackathonEventActivity.TEMPLATE, response)
             itemView.context.startActivity(intent)
         }
     }

@@ -2,6 +2,7 @@ package com.adammcneilly.mobileleaguehacking.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.adammcneilly.mobileleaguehacking.utils.creator
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -99,15 +100,6 @@ open class Hackathon() : Parcelable {
     }
 
     companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<Hackathon> = object : Parcelable.Creator<Hackathon> {
-            override fun createFromParcel(source: Parcel): Hackathon {
-                return Hackathon(source)
-            }
-
-            override fun newArray(size: Int): Array<out Hackathon?> {
-                return arrayOfNulls(size)
-            }
-        }
+        @JvmField val CREATOR = creator(::Hackathon)
     }
 }

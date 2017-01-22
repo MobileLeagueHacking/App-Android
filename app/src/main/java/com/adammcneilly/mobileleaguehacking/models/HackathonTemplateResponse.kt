@@ -1,5 +1,8 @@
 package com.adammcneilly.mobileleaguehacking.models
 
+import android.os.Parcel
+import android.os.Parcelable
+import com.adammcneilly.mobileleaguehacking.utils.creator
 import java.util.*
 
 /**
@@ -7,11 +10,11 @@ import java.util.*
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-open class HackathonTemplateResponse {
+open class HackathonTemplateResponse() : Parcelable {
     /**
      * The Hackathon we are displaying.
      */
-    var hackathon = ""
+    var hackathon = Hackathon()
 
     /**
      * The events that are taking place during the event.
@@ -27,4 +30,26 @@ open class HackathonTemplateResponse {
      * The sponsors that are supporting the event.
      */
     var sponsors: List<Sponsor> = ArrayList()
+
+    constructor(source: Parcel) : this() {
+        hackathon = source.readParcelable(Hackathon::class.java.classLoader)
+        source.readList(schedule, Event::class.java.classLoader)
+        source.readList(prizes, Prize::class.java.classLoader)
+        source.readList(sponsors, Sponsor::class.java.classLoader)
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeParcelable(hackathon, flags)
+        dest?.writeList(schedule)
+        dest?.writeList(prizes)
+        dest?.writeList(sponsors)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object {
+        @JvmField val CREATOR = creator(::HackathonTemplateResponse)
+    }
 }
