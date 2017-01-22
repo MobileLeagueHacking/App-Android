@@ -19,7 +19,9 @@ open class EventAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var fullList: MutableList<Any> = ArrayList()
 
     constructor(items: List<Event>): this() {
-        val sectionMap = items.groupBy(Event::getDayDisplay)
+        // Sort items by date in order to ensure their order
+        val sortedItems = items.sortedBy { it.startTime }
+        val sectionMap = sortedItems.groupBy(Event::getDayDisplay)
         sectionMap.forEach {
             fullList.add(it.key)
             fullList.addAll(it.value)
@@ -74,15 +76,18 @@ open class EventAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     open class EventViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private var eventName: TextView? = null
+        private var eventLocation: TextView? = null
         private var eventTime: TextView? = null
 
         init {
             eventName = view.findViewById(R.id.event_name) as? TextView
+            eventLocation = view.findViewById(R.id.event_location) as? TextView
             eventTime = view.findViewById(R.id.event_time) as? TextView
         }
 
         fun bindItem(item: Event) {
             eventName?.text = item.name
+            eventLocation?.text = item.location
             eventTime?.text = item.getStartTimeDisplay()
         }
     }
