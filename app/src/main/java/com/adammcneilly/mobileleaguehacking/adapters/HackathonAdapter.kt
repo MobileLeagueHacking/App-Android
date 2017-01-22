@@ -89,6 +89,10 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             val techTalk = Event()
             techTalk.name = "Tech Talk"
             testResponse.schedule = listOf(noLight, techTalk)
+
+            val awsPrize = Prize()
+            awsPrize.description = "Best use of AWS"
+            testResponse.prizes = listOf(awsPrize)
         }
 
         fun bind(hackathon: Hackathon) {

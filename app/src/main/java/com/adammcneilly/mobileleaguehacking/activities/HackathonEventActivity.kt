@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.fragments.PrizeFragment
 import com.adammcneilly.mobileleaguehacking.fragments.ScheduleFragment
 import com.adammcneilly.mobileleaguehacking.fragments.SponsorFragment
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
@@ -89,10 +90,12 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         when (item.title) {
             SPONSORS -> fragment = SponsorFragment.newInstance(response.sponsors)
             SCHEDULE -> fragment = ScheduleFragment.newInstance(response.schedule)
+            PRIZES -> fragment = PrizeFragment.newInstance(response.prizes)
         }
 
         if (fragment != null) {
             supportFragmentManager.beginTransaction().replace(R.id.content_hackathon_event, fragment).commit()
+            supportActionBar?.title = response.hackathon.name + " " + item.title
         }
 
         setItemChecked(item)
