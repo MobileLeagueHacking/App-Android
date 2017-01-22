@@ -3,6 +3,7 @@ package com.adammcneilly.mobileleaguehacking.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.adammcneilly.mobileleaguehacking.utils.creator
+import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,10 +13,22 @@ import java.util.*
  * Created by adam.mcneilly on 1/21/17.
  */
 open class Hackathon() : Parcelable {
+
     /**
      * Formatter to convert a string into a date.
      */
     val dateFormatter = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
+
+    /**
+     * The unique identifier for the hackathon.
+     */
+    @SerializedName("_id")
+    var id = ""
+
+    /**
+     * The region the hackathon
+     */
+    var region = ""
 
     /**
      * The URL to the main hackathon image.

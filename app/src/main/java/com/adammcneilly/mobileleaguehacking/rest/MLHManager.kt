@@ -35,7 +35,7 @@ open class MLHManager {
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://mlh-spartahack.mybluemix.net/")
+                .baseUrl("http://fa997472.ngrok.io/")
                 .client(client)
                 .build()
 
