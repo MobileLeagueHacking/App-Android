@@ -9,7 +9,7 @@ import com.adammcneilly.mobileleaguehacking.utils.creator
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-open class Sponsor(): Parcelable {
+open class Sponsor(): BaseModel() {
     /**
      * The name of the sponsors company.
      */
@@ -35,10 +35,6 @@ open class Sponsor(): Parcelable {
         dest?.writeString(name)
         dest?.writeString(logo)
         dest?.writeString(url)
-    }
-
-    override fun describeContents(): Int {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

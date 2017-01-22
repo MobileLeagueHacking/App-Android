@@ -9,7 +9,7 @@ import com.adammcneilly.mobileleaguehacking.utils.creator
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-open class Event(): Parcelable {
+open class Event(): BaseModel() {
     /**
      * The name of the event.
      */
@@ -35,10 +35,6 @@ open class Event(): Parcelable {
         dest?.writeString(name)
         dest?.writeString(location)
         dest?.writeString(startTime)
-    }
-
-    override fun describeContents(): Int {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

@@ -9,7 +9,7 @@ import com.adammcneilly.mobileleaguehacking.utils.creator
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-open class Prize(): Parcelable {
+open class Prize(): BaseModel() {
     /**
      * The description for the prize.
      */
@@ -28,10 +28,6 @@ open class Prize(): Parcelable {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(description)
         dest?.writeString(value)
-    }
-
-    override fun describeContents(): Int {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {
