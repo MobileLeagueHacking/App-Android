@@ -101,6 +101,8 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
             val awsPrize = Prize()
             awsPrize.description = "Best use of AWS"
+            awsPrize.sponsor = "MLH"
+            awsPrize.value = "$100 AWS Credits"
             testResponse.prizes = listOf(awsPrize)
         }
 

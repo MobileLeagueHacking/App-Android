@@ -20,14 +20,21 @@ open class Prize(): BaseModel() {
      */
     var value = ""
 
+    /**
+     * The sponsor who is supporting the prize.
+     */
+    var sponsor = ""
+
     constructor(source: Parcel): this() {
         description = source.readString()
         value = source.readString()
+        sponsor = source.readString()
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(description)
         dest?.writeString(value)
+        dest?.writeString(sponsor)
     }
 
     companion object {

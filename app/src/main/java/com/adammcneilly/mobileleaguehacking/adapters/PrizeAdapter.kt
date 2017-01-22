@@ -26,13 +26,16 @@ open class PrizeAdapter: BaseAdapter<Prize, PrizeAdapter.PrizeViewHolder> {
 
     open class PrizeViewHolder(view: View): BaseAdapter.BaseViewHolder<Prize>(view) {
         private var prizeName: TextView? = null
+        private var prizeSponsor: TextView? = null
 
         init {
             prizeName = view.findViewById(R.id.prize_name) as? TextView
+            prizeSponsor = view.findViewById(R.id.prize_sponsor) as? TextView
         }
 
         override fun bindItem(item: Prize) {
-            prizeName?.text = item.description
+            prizeName?.text = item.description + " - " + item.value
+            prizeSponsor?.text = item.sponsor
         }
     }
 }
