@@ -1,5 +1,6 @@
 package com.adammcneilly.mobileleaguehacking.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -34,6 +35,7 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         menuItems.put(SCHEDULE, R.drawable.ic_calendar_black_24dp)
         menuItems.put(PRIZES, R.drawable.ic_prizes_black_24dp)
         menuItems.put(SPONSORS, R.drawable.ic_sponsor_black_24dp)
+        menuItems.put(MAP, R.drawable.ic_sponsor_black_24dp)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +93,11 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
             SPONSORS -> fragment = SponsorFragment.newInstance(response.sponsors)
             SCHEDULE -> fragment = ScheduleFragment.newInstance(response.schedule)
             PRIZES -> fragment = PrizeFragment.newInstance(response.prizes)
+            MAP -> {
+                val intent = Intent(this, WebviewActivity::class.java)
+                intent.putExtra(WebviewActivity.URL, response.hackathon.mapUrl)
+                startActivity(intent)
+            }
         }
 
         if (fragment != null) {
@@ -116,5 +123,6 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         val SCHEDULE = "Schedule"
         val SPONSORS = "Sponsors"
         val PRIZES = "Prizes"
+        val MAP = "Map"
     }
 }

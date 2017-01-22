@@ -59,6 +59,11 @@ open class Hackathon() : Parcelable {
      */
     var endDate = ""
 
+    /**
+     * URL to the hackathon's map.
+     */
+    var mapUrl = ""
+
     constructor(source: Parcel) : this() {
         this.imageURL = source.readString()
         this.logoURL = source.readString()
@@ -68,6 +73,7 @@ open class Hackathon() : Parcelable {
         this.location = source.readString()
         this.startDate = source.readString()
         this.endDate = source.readString()
+        this.mapUrl = source.readString()
     }
 
     /**
@@ -93,6 +99,7 @@ open class Hackathon() : Parcelable {
         dest?.writeString(location)
         dest?.writeString(startDate)
         dest?.writeString(endDate)
+        dest?.writeString(mapUrl)
     }
 
     override fun describeContents(): Int {

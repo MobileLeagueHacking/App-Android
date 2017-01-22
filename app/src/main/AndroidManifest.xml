@@ -23,7 +23,11 @@
         <activity
             android:name=".activities.HackathonEventActivity"
             android:label="@string/title_activity_hackathon_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities.WebviewActivity"
+            android:label="@string/map"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
