@@ -82,6 +82,13 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             val ics = Sponsor()
             ics.name = "Intrepid Control Systems"
             testResponse.sponsors = listOf(helloWorld, ics)
+
+            val noLight = Event()
+            noLight.name = "!Light"
+
+            val techTalk = Event()
+            techTalk.name = "Tech Talk"
+            testResponse.schedule = listOf(noLight, techTalk)
         }
 
         fun bind(hackathon: Hackathon) {

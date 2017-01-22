@@ -8,10 +8,12 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.fragments.ScheduleFragment
 import com.adammcneilly.mobileleaguehacking.fragments.SponsorFragment
 import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.models.HackathonTemplateResponse
@@ -67,9 +69,9 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
 
         // Setup menu
         val menu = navigationView?.menu
-        menuItems.forEach { menu?.add(it.key)?.setIcon(it.value) }
+        menuItems.forEach { menu?.add(Menu.NONE, it.key.hashCode(), Menu.NONE, it.key)?.setIcon(it.value) }
 
-        menu?.getItem(0)?.isChecked = true
+        menu?.performIdentifierAction(SCHEDULE.hashCode(), 0)
     }
 
     override fun onBackPressed() {
@@ -85,7 +87,8 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         var fragment: Fragment? = null
 
         when (item.title) {
-                SPONSORS -> fragment = SponsorFragment.newInstance(response.sponsors)
+            SPONSORS -> fragment = SponsorFragment.newInstance(response.sponsors)
+            SCHEDULE -> fragment = ScheduleFragment.newInstance(response.schedule)
         }
 
         if (fragment != null) {
