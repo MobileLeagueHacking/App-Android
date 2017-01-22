@@ -106,7 +106,7 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
                                             launchApp(t.packageName)
                                         }
                                         HackathonTypeResponse.TEMPLATE -> {
-                                            launchTemplate(HackathonTemplateResponse(t))
+                                            launchTemplate(HackathonTemplateResponse(t, hackathon!!))
                                         }
                                         else -> {
                                             launchWebsite(t.customUrl)

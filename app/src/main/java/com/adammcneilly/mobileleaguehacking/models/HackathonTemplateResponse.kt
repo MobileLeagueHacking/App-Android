@@ -31,7 +31,8 @@ open class HackathonTemplateResponse() : Parcelable {
      */
     var sponsors: List<Sponsor> = ArrayList()
 
-    constructor(typeResponse: HackathonTypeResponse): this() {
+    constructor(typeResponse: HackathonTypeResponse, hackathon: Hackathon): this() {
+        this.hackathon = hackathon
         schedule = typeResponse.schedule
         prizes = typeResponse.prizes
         sponsors = typeResponse.sponsors
