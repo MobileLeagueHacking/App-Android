@@ -1,7 +1,7 @@
 package com.adammcneilly.mobileleaguehacking.fragments
 
 import android.os.Bundle
-import com.adammcneilly.mobileleaguehacking.adapters.BaseAdapter
+import android.support.v7.widget.RecyclerView
 import com.adammcneilly.mobileleaguehacking.adapters.PrizeAdapter
 import com.adammcneilly.mobileleaguehacking.models.Prize
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
  */
 open class PrizeFragment: BaseListFragment<Prize>() {
 
-    override fun getAdapter(): BaseAdapter<Prize, *> {
+    override fun getAdapter(): RecyclerView.Adapter<*> {
         return PrizeAdapter(items)
     }
 

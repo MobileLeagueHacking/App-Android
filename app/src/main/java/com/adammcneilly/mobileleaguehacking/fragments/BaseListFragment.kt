@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.adammcneilly.mobileleaguehacking.DividerItemDecoration
 import com.adammcneilly.mobileleaguehacking.R
-import com.adammcneilly.mobileleaguehacking.adapters.BaseAdapter
 import com.adammcneilly.mobileleaguehacking.models.BaseModel
 import java.util.*
 
@@ -41,7 +40,7 @@ abstract class BaseListFragment<T: BaseModel>: Fragment() {
         return view
     }
 
-    abstract fun getAdapter(): BaseAdapter<T, *>
+    abstract fun getAdapter(): RecyclerView.Adapter<*>
 
     companion object {
         val ITEMS = "Items"

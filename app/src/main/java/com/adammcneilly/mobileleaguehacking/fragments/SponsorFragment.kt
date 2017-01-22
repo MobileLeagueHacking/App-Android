@@ -1,7 +1,7 @@
 package com.adammcneilly.mobileleaguehacking.fragments
 
 import android.os.Bundle
-import com.adammcneilly.mobileleaguehacking.adapters.BaseAdapter
+import android.support.v7.widget.RecyclerView
 import com.adammcneilly.mobileleaguehacking.adapters.SponsorAdapter
 import com.adammcneilly.mobileleaguehacking.models.Sponsor
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
  */
 open class SponsorFragment: BaseListFragment<Sponsor>() {
 
-    override fun getAdapter(): BaseAdapter<Sponsor, *> {
+    override fun getAdapter(): RecyclerView.Adapter<*> {
         return SponsorAdapter(items)
     }
 

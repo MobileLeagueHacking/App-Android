@@ -1,7 +1,7 @@
 package com.adammcneilly.mobileleaguehacking.fragments
 
 import android.os.Bundle
-import com.adammcneilly.mobileleaguehacking.adapters.BaseAdapter
+import android.support.v7.widget.RecyclerView
 import com.adammcneilly.mobileleaguehacking.adapters.EventAdapter
 import com.adammcneilly.mobileleaguehacking.models.Event
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
  */
 open class ScheduleFragment : BaseListFragment<Event>() {
 
-    override fun getAdapter(): BaseAdapter<Event, *> {
+    override fun getAdapter(): RecyclerView.Adapter<*> {
         return EventAdapter(items)
     }
 

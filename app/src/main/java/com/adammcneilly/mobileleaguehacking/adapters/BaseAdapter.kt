@@ -10,7 +10,7 @@ import java.util.*
  *
  * Created by adam.mcneilly on 1/21/17.
  */
-abstract class BaseAdapter<T: BaseModel, V: BaseAdapter.BaseViewHolder<T>>(): RecyclerView.Adapter<V>() {
+abstract class BaseAdapter<T, V: BaseAdapter.BaseViewHolder<T>>(): RecyclerView.Adapter<V>() {
     var items: List<T> = ArrayList()
 
     constructor(items: List<T>): this() {
@@ -30,7 +30,7 @@ abstract class BaseAdapter<T: BaseModel, V: BaseAdapter.BaseViewHolder<T>>(): Re
         holder.bindItem(items[position])
     }
 
-    abstract class BaseViewHolder<in T: BaseModel>(view: View): RecyclerView.ViewHolder(view) {
+    abstract class BaseViewHolder<in T>(view: View): RecyclerView.ViewHolder(view) {
         abstract fun bindItem(item: T)
     }
 }

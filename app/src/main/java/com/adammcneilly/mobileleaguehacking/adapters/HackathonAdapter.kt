@@ -85,10 +85,16 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
             val noLight = Event()
             noLight.name = "!Light"
+            noLight.startTime = "2017-01-20 07:15"
 
             val techTalk = Event()
             techTalk.name = "Tech Talk"
-            testResponse.schedule = listOf(noLight, techTalk)
+            techTalk.startTime = "2017-01-20 22:40"
+
+            val techTwo = Event()
+            techTwo.name = "Tech Talk"
+            techTwo.startTime = "2017-01-21 14:30"
+            testResponse.schedule = listOf(noLight, techTalk, techTwo)
 
             val awsPrize = Prize()
             awsPrize.description = "Best use of AWS"

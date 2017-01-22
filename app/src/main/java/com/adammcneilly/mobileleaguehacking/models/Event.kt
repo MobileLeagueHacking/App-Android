@@ -3,6 +3,8 @@ package com.adammcneilly.mobileleaguehacking.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.adammcneilly.mobileleaguehacking.utils.creator
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Represents an event on the schedule.
@@ -31,6 +33,24 @@ open class Event(): BaseModel() {
         startTime = source.readString()
     }
 
+    fun getStartTimeDisplay(): String {
+        if (startTime.isNotEmpty()) {
+            val date = timeFormat.parse(startTime)
+            return timeDisplay.format(date)
+        }
+
+        return ""
+    }
+
+    fun getDayDisplay(): String {
+        if (startTime.isNotEmpty()) {
+            val date = timeFormat.parse(startTime)
+            return dayDisplay.format(date)
+        }
+
+        return ""
+    }
+
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(name)
         dest?.writeString(location)
@@ -39,5 +59,9 @@ open class Event(): BaseModel() {
 
     companion object {
         @JvmField val CREATOR = creator(::Event)
+
+        private val timeFormat = SimpleDateFormat("yyyy-mm-dd HH:mm", Locale.getDefault())
+        private val timeDisplay = SimpleDateFormat("HH:mm", Locale.getDefault())
+        private val dayDisplay = SimpleDateFormat("E, MMM dd", Locale.getDefault())
     }
 }
