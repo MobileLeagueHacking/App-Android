@@ -20,7 +20,7 @@ open class EventAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     constructor(items: List<Event>): this() {
         // Sort items by date in order to ensure their order
-        val sortedItems = items.sortedBy { it.startTime }
+        val sortedItems = items.sortedBy { it.time }
         val sectionMap = sortedItems.groupBy(Event::getDayDisplay)
         sectionMap.forEach {
             fullList.add(it.key)

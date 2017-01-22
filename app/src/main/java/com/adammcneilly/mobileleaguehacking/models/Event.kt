@@ -25,27 +25,35 @@ open class Event(): BaseModel() {
     /**
      * The starting time for the event.
      */
-    var startTime = ""
+    var time = ""
 
     constructor(source: Parcel): this() {
         name = source.readString()
         location = source.readString()
-        startTime = source.readString()
+        time = source.readString()
     }
 
     fun getStartTimeDisplay(): String {
-        if (startTime.isNotEmpty()) {
-            val date = timeFormat.parse(startTime)
-            return timeDisplay.format(date)
+        if (time.isNotEmpty()) {
+            try{
+                val date = timeFormat.parse(time)
+                return timeDisplay.format(date)
+            } catch (e: Exception) {
+                return ""
+            }
         }
 
         return ""
     }
 
     fun getDayDisplay(): String {
-        if (startTime.isNotEmpty()) {
-            val date = timeFormat.parse(startTime)
-            return dayDisplay.format(date)
+        if (time.isNotEmpty()) {
+            try {
+                val date = timeFormat.parse(time)
+                return dayDisplay.format(date)
+            } catch (e: Exception) {
+                return ""
+            }
         }
 
         return ""
@@ -54,7 +62,7 @@ open class Event(): BaseModel() {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(name)
         dest?.writeString(location)
-        dest?.writeString(startTime)
+        dest?.writeString(time)
     }
 
     companion object {
@@ -68,22 +76,22 @@ open class Event(): BaseModel() {
         fun getSampleEvents(): List<Event> {
             val openingCeremony = Event()
             openingCeremony.name = "Opening Ceremony"
-            openingCeremony.startTime = "2017-01-20 21:00"
+            openingCeremony.time = "2017-01-20 21:00"
             openingCeremony.location = "B115"
 
             val noLight = Event()
             noLight.name = "!Light"
-            noLight.startTime = "2017-01-21 22:30"
+            noLight.time = "2017-01-21 22:30"
             noLight.location = "B106"
 
             val expo = Event()
             expo.name = "Expo"
-            expo.startTime = "2017-01-22 13:00"
+            expo.time = "2017-01-22 13:00"
             expo.location = "B Hallway"
 
             val closingCeremony = Event()
             closingCeremony.name = "Closing Ceremony"
-            closingCeremony.startTime = "2017-01-22 15:00"
+            closingCeremony.time = "2017-01-22 15:00"
             closingCeremony.location = "B115"
 
             return listOf(openingCeremony, noLight, expo, closingCeremony)

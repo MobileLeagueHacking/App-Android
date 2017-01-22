@@ -96,7 +96,7 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
             MAP -> {
                 val intent = Intent(this, WebviewActivity::class.java)
                 //intent.putExtra(WebviewActivity.URL, response.hackathon.mapUrl)
-                intent.putExtra(WebviewActivity.URL, "https://docs.google.com/gview?url=https://api.spartahack.com/map&embedded=true")
+                intent.putExtra(WebviewActivity.URL, "https://docs.google.com/gview?website=https://api.spartahack.com/map&embedded=true")
                 startActivity(intent)
             }
         }

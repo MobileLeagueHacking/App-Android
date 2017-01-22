@@ -1,10 +1,13 @@
 package com.adammcneilly.mobileleaguehacking.models
 
+import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.annotations.SerializedName
+import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
+import java.util.*
 
 /**
  * Response from the server telling us what kind of hackathon we are working with.
@@ -19,36 +22,19 @@ open class HackathonTypeResponse {
     @SerializedName("android_app")
     var packageName = ""
 
-    open class HackathonTypeResponseDeserializer: JsonDeserializer<HackathonTypeResponse> {
-        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): HackathonTypeResponse {
-            val response = HackathonTypeResponse()
+    var schedule: List<Event> = ArrayList()
 
-            if (json != null && json.isJsonObject) {
-                val root = json.asJsonObject
+    var prizes: List<Prize> = ArrayList()
 
-                if (root.has(APP_TYPE) && root.get(APP_TYPE).isJsonPrimitive) {
-                    response.type = root.get(APP_TYPE).asInt
+    var sponsors: List<Sponsor> = ArrayList()
 
-                    when (response.type) {
-                        APP -> {
-                            if (root.has("android_app") && root.get("android_app").isJsonPrimitive) {
-                                response.packageName = root.get("android_app").asString
-                            }
-                        }
-                    }
-                } else {
-                    // WHAT?!
-                }
-            }
-
-            return response
-        }
-    }
+    @SerializedName("custom_url")
+    var customUrl = ""
 
     companion object {
         val APP = 0
-        val WEB = 1
-        val TEMPLATE = 2
+        val TEMPLATE = 1
+        val WEB = 2
 
         val APP_TYPE = "app_type"
     }

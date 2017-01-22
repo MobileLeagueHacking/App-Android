@@ -27,10 +27,6 @@ open class MLHManager {
      */
     val service: MLHService
 
-    val gson = GsonBuilder()
-            .registerTypeAdapter(HackathonTypeResponse::class.java, HackathonTypeResponse.HackathonTypeResponseDeserializer())
-            .create()
-
     init {
         if (BuildConfig.DEBUG) loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -40,7 +36,7 @@ open class MLHManager {
 
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("http://fa997472.ngrok.io/")
                 .client(client)
                 .build()

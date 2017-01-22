@@ -31,6 +31,12 @@ open class HackathonTemplateResponse() : Parcelable {
      */
     var sponsors: List<Sponsor> = ArrayList()
 
+    constructor(typeResponse: HackathonTypeResponse): this() {
+        schedule = typeResponse.schedule
+        prizes = typeResponse.prizes
+        sponsors = typeResponse.sponsors
+    }
+
     constructor(source: Parcel) : this() {
         hackathon = source.readParcelable(Hackathon::class.java.classLoader)
         source.readList(schedule, Event::class.java.classLoader)

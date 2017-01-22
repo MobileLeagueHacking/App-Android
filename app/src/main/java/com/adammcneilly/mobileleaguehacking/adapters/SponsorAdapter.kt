@@ -34,7 +34,7 @@ open class SponsorAdapter: BaseAdapter<Sponsor, SponsorAdapter.SponsorViewHolder
 
         override fun bindItem(item: Sponsor) {
             sponsorName?.text = item.name
-            sponsorWebsite?.text = item.url
+            sponsorWebsite?.text = item.website
         }
     }
 }

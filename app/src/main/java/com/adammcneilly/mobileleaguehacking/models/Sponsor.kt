@@ -23,18 +23,18 @@ open class Sponsor(): BaseModel() {
     /**
      * The sponsors website
      */
-    var url = ""
+    var website = ""
 
     constructor(source: Parcel): this() {
         name = source.readString()
         logo = source.readString()
-        url = source.readString()
+        website = source.readString()
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(name)
         dest?.writeString(logo)
-        dest?.writeString(url)
+        dest?.writeString(website)
     }
 
     companion object {
@@ -44,15 +44,15 @@ open class Sponsor(): BaseModel() {
         fun getSampleSponsors(): List<Sponsor> {
             val ibm = Sponsor()
             ibm.name = "IBM"
-            ibm.url = "http://ibm.com"
+            ibm.website = "http://ibm.com"
 
             val quickenLoans = Sponsor()
             quickenLoans.name = "Quicken Loans"
-            quickenLoans.url = "http://quickenloans.com"
+            quickenLoans.website = "http://quickenloans.com"
 
             val delphi = Sponsor()
             delphi.name = "Delphi"
-            delphi.url = "http://delphi.com"
+            delphi.website = "http://delphi.com"
 
             return listOf(ibm, quickenLoans, delphi)
         }

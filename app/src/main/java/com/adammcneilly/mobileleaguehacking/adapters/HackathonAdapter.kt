@@ -113,6 +113,12 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
                                         HackathonTypeResponse.APP -> {
                                             launchApp(t.packageName)
                                         }
+                                        HackathonTypeResponse.TEMPLATE -> {
+                                            launchTemplate(HackathonTemplateResponse(t))
+                                        }
+                                        else -> {
+                                            launchWebsite(t.customUrl)
+                                        }
                                     }
                                 }
                             }
@@ -139,9 +145,9 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             }
         }
 
-        private fun launchWebsite(response: HackathonWebResponse) {
+        private fun launchWebsite(url: String) {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(response.url)
+            intent.data = Uri.parse(url)
             itemView.context.startActivity(intent)
         }
 
