@@ -25,13 +25,16 @@ open class SponsorAdapter: BaseAdapter<Sponsor, SponsorAdapter.SponsorViewHolder
 
     open class SponsorViewHolder(view: View): BaseAdapter.BaseViewHolder<Sponsor>(view) {
         private var sponsorName: TextView? = null
+        private var sponsorWebsite: TextView? = null
 
         init {
             sponsorName = view.findViewById(R.id.sponsor_name) as? TextView
+            sponsorWebsite = view.findViewById(R.id.sponsor_website) as? TextView
         }
 
         override fun bindItem(item: Sponsor) {
             sponsorName?.text = item.name
+            sponsorWebsite?.text = item.url
         }
     }
 }

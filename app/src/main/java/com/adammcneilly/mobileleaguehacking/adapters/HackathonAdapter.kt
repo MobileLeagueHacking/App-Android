@@ -78,9 +78,11 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
 
             val helloWorld = Sponsor()
             helloWorld.name = "HelloWorld"
+            helloWorld.url = "http://helloworld.com"
 
             val ics = Sponsor()
             ics.name = "Intrepid Control Systems"
+            ics.url = "https://www.intrepidcs.com/"
             testResponse.sponsors = listOf(helloWorld, ics)
 
             val noLight = Event()
