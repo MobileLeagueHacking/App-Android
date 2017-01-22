@@ -8,8 +8,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import com.adammcneilly.mobileleaguehacking.R
+import com.adammcneilly.mobileleaguehacking.models.Hackathon
 import com.adammcneilly.mobileleaguehacking.models.HackathonTemplateResponse
+import com.bumptech.glide.Glide
 import java.util.*
 
 open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -21,8 +25,7 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         //TODO: Continue to hardcode or pull these?
         menuItems.put("Schedule", R.drawable.ic_calendar_black_24dp)
         menuItems.put("Prizes", R.drawable.ic_prizes_black_24dp)
-        menuItems.put("Announcements", R.drawable.ic_announcements_black_24dp)
-        menuItems.put("Profile", R.drawable.ic_profile_black_24dp)
+        menuItems.put("Sponsors", R.drawable.ic_sponsor_black_24dp)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,20 +47,18 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
 
         // Get hackathon
         val response: HackathonTemplateResponse? = intent.getParcelableExtra(TEMPLATE)
-        supportActionBar?.title = response?.hackathon?.name
+        val hackathon: Hackathon? = response?.hackathon
+        supportActionBar?.title = hackathon?.name
 
-//        val hackathon: Hackathon? = intent.getParcelableExtra<Hackathon>(TEMPLATE)
-//        supportActionBar?.title = hackathon?.name
-//
-//        // Setup header
-//        val headerView = navigationView.getHeaderView(0)
-//        val headerImage = headerView.findViewById(R.id.hackathon_logo) as ImageView
-//        val headerTitle = headerView.findViewById(R.id.hackathon_name) as TextView
-//        val headerDate = headerView.findViewById(R.id.hackathon_date) as TextView
-//
-//        Glide.with(this).load(hackathon?.logoURL).error(R.drawable.noise).into(headerImage)
-//        headerTitle.text = hackathon?.name
-//        headerDate.text = hackathon?.date
+        // Setup header
+        val headerView = navigationView.getHeaderView(0)
+        val headerImage = headerView.findViewById(R.id.hackathon_logo) as ImageView
+        val headerTitle = headerView.findViewById(R.id.hackathon_name) as TextView
+        val headerDate = headerView.findViewById(R.id.hackathon_date) as TextView
+
+        Glide.with(this).load(hackathon?.logoURL).error(R.drawable.noise).into(headerImage)
+        headerTitle.text = hackathon?.name
+        headerDate.text = hackathon?.date
 
         // Setup menu
         val menu = navigationView.menu

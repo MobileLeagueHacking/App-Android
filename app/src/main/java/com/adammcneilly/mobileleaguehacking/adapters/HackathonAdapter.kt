@@ -60,6 +60,8 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         private var hackathonLocation: TextView? = null
         private var hackathon: Hackathon? = null
 
+        var testResponse = HackathonTemplateResponse()
+
         init {
             itemView.setOnClickListener(this)
 
@@ -68,6 +70,11 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             hackathonName = view.findViewById(R.id.hackathon_name) as? TextView
             hackathonDate = view.findViewById(R.id.hackathon_date) as? TextView
             hackathonLocation = view.findViewById(R.id.hackathon_location) as? TextView
+
+            //TODO: Remove
+            testResponse.hackathon.name = "HackMTY"
+            testResponse.hackathon.logoURL = "https://s3.amazonaws.com/assets.mlh.io/events/logos/000/000/392/thumb/e722cf7c0b4d-hackmtyMLH_100x100.png?1467906270"
+            testResponse.hackathon.date = "August 27th - 28th"
         }
 
         fun bind(hackathon: Hackathon) {
@@ -88,6 +95,8 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         override fun onClick(v: View?) {
             if (hackathon != null) {
                 //TODO: Make call for hackathon name and get response
+
+                launchTemplate(testResponse)
             }
         }
 
