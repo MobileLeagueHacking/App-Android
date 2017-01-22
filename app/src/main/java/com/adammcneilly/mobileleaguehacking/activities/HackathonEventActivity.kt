@@ -35,7 +35,7 @@ open class HackathonEventActivity : AppCompatActivity(), NavigationView.OnNaviga
         menuItems.put(SCHEDULE, R.drawable.ic_calendar_black_24dp)
         menuItems.put(PRIZES, R.drawable.ic_prizes_black_24dp)
         menuItems.put(SPONSORS, R.drawable.ic_sponsor_black_24dp)
-        menuItems.put(MAP, R.drawable.ic_sponsor_black_24dp)
+        menuItems.put(MAP, R.drawable.ic_place_black_24dp)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

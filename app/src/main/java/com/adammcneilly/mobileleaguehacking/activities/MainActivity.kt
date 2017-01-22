@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.adammcneilly.mobileleaguehacking.R
 import com.adammcneilly.mobileleaguehacking.adapters.HackathonAdapter
@@ -14,12 +16,18 @@ import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import java.util.*
 
 open class MainActivity : AppCompatActivity() {
     /**
      * An adapter used to display the list of Hackathons.
      */
     val adapter = HackathonAdapter()
+
+    /**
+     * A list of all hackathons pulled from the server, that can be filtered.
+     */
+    var allHackathons: List<Hackathon> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +67,10 @@ open class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onNext(t: List<Hackathon>?) {
-                        if (t != null) adapter.swapItems(t)
+                        if (t != null) {
+                            allHackathons = t
+                            adapter.swapItems(allHackathons)
+                        }
                     }
 
                     override fun onCompleted() {
@@ -67,5 +78,14 @@ open class MainActivity : AppCompatActivity() {
                         refresh_layout.isRefreshing = false
                     }
                 })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }
