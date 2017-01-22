@@ -65,8 +65,6 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
         private var hackathonLocation: TextView? = null
         private var hackathon: Hackathon? = null
 
-        var testResponse = HackathonTemplateResponse()
-
         init {
             itemView.setOnClickListener(this)
 
@@ -75,12 +73,6 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
             hackathonName = view.findViewById(R.id.hackathon_name) as? TextView
             hackathonDate = view.findViewById(R.id.hackathon_date) as? TextView
             hackathonLocation = view.findViewById(R.id.hackathon_location) as? TextView
-
-            //TODO: Remove
-            testResponse.hackathon = Hackathon.getSampleHackathon()
-            testResponse.sponsors = Sponsor.getSampleSponsors()
-            testResponse.schedule = Event.getSampleEvents()
-            testResponse.prizes = Prize.getSamplePrizes()
         }
 
         fun bind(hackathon: Hackathon) {
@@ -128,7 +120,7 @@ open class HackathonAdapter(): RecyclerView.Adapter<HackathonAdapter.HackathonVi
                             }
 
                             override fun onError(e: Throwable?) {
-                                Toast.makeText(itemView.context, e?.message, Toast.LENGTH_SHORT).show()
+                                launchWebsite(hackathon?.hackURL.orEmpty())
                             }
                         })
             }

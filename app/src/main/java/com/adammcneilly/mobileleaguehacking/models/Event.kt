@@ -68,7 +68,7 @@ open class Event(): BaseModel() {
     companion object {
         @JvmField val CREATOR = creator(::Event)
 
-        private val timeFormat = SimpleDateFormat("yyyy-mm-dd HH:mm", Locale.getDefault())
+        private val timeFormat = SimpleDateFormat("yyyy-mm-dd'T'HH:mm", Locale.getDefault())
         private val timeDisplay = SimpleDateFormat("HH:mm", Locale.getDefault())
         private val dayDisplay = SimpleDateFormat("E, MMM dd", Locale.getDefault())
 
@@ -76,22 +76,22 @@ open class Event(): BaseModel() {
         fun getSampleEvents(): List<Event> {
             val openingCeremony = Event()
             openingCeremony.name = "Opening Ceremony"
-            openingCeremony.time = "2017-01-20 21:00"
+            openingCeremony.time = "2017-01-20T21:00"
             openingCeremony.location = "B115"
 
             val noLight = Event()
             noLight.name = "!Light"
-            noLight.time = "2017-01-21 22:30"
+            noLight.time = "2017-01-21T22:30"
             noLight.location = "B106"
 
             val expo = Event()
             expo.name = "Expo"
-            expo.time = "2017-01-22 13:00"
+            expo.time = "2017-01-22T13:00"
             expo.location = "B Hallway"
 
             val closingCeremony = Event()
             closingCeremony.name = "Closing Ceremony"
-            closingCeremony.time = "2017-01-22 15:00"
+            closingCeremony.time = "2017-01-22T15:00"
             closingCeremony.location = "B115"
 
             return listOf(openingCeremony, noLight, expo, closingCeremony)
