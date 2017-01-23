@@ -42,8 +42,7 @@ open class MainActivity : AppCompatActivity(), FilterDialog.OnFilteredListener {
         hackathon_list.adapter = adapter
         hackathon_list.layoutManager = layoutManager
 
-        refresh_layout.isEnabled = false
-        //refresh_layout.setOnRefreshListener { getHackathons() }
+        refresh_layout.setOnRefreshListener { getHackathons(Region.NORTH_AMERICA) }
 
         getHackathons(Region.NORTH_AMERICA)
     }
