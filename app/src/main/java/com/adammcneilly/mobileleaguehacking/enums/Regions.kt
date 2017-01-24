@@ -5,7 +5,7 @@ package com.adammcneilly.mobileleaguehacking.enums
  *
  * Created by adam.mcneilly on 1/22/17.
  */
-enum class Region(val display: String, val code: String) {
-    NORTH_AMERICA("North America", "na"),
-    EUROPE("Europe", "eu")
+enum class Region(val code: String) {
+    NORTH_AMERICA("na"),
+    EUROPE("eu")
 }
